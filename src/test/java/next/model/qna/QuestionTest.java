@@ -31,6 +31,7 @@ public class QuestionTest {
 		question = question.withAnswers(answers);
 		
 		// when
+		assertThat(question.canDelete(), is(true));
 	}
 
 	@Test
@@ -44,5 +45,6 @@ public class QuestionTest {
 		question = question.withAnswers(answers);
 		
 		// when
+		assertThat(question.canDelete(), is(false));
 	}
 }
