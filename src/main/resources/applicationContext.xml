@@ -12,6 +12,8 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
+	<context:annotation-config />
+	
 	<context:property-placeholder location="classpath:/application-properties.xml" />
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -20,6 +22,10 @@
 		p:username="${database.username}" 
 		p:password="${database.password}"
 	/>
+	
+	<!-- <bean id="DBInitializer" class="next.dao.DBInitializer" 
+		p:dataSource-ref="dataSource"
+	/> -->
 
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
 		p:dataSource-ref="dataSource"
