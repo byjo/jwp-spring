@@ -33,4 +33,8 @@
         class="org.springframework.context.support.MessageSourceAccessor"
         c:messageSource-ref="messageSource"
     />
+    
+    <mvc:interceptors>
+		<bean class="core.utils.RequestProcessingTimeInterceptor" />
+	</mvc:interceptors> 
 </beans>
