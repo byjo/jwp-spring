@@ -9,8 +9,17 @@
 	<%@ include file="/include/top.jspf"%>
 
 	<div id="main">
-		<form:form modelAttribute="question" action="/questions" method="post">
+ 		<c:choose> 
+ 		<c:when test="${question.questionId == 0}">
+ 			<c:set var="path" value="/questions"></c:set>
+ 		</c:when>
+ 		<c:otherwise>
+ 			<c:set var="path" value="/${question.questionId}/update"></c:set>
+ 		</c:otherwise>
+ 		</c:choose>
+		<form:form modelAttribute="question" action="${path}" method="post">
 			<table>
+ 			<input type="hidden" name="questionId" value="${question.questionId}">
 				<tr>
 					<td width="150">글쓴이</td>
 					<td>

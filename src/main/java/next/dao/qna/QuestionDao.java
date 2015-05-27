@@ -83,4 +83,9 @@ public class QuestionDao extends AbstractJdbcDaoSupport {
 		String sql = "DELETE FROM QUESTIONS WHERE questionId = ?";
 		getJdbcTemplate().update(sql, questionId);
 	}
+
+	public void update(Question question) {
+		String sql = "UPDATE QUESTIONS SET writer = ?, title = ?, contents = ? WHERE questionId = ?";
+		getJdbcTemplate().update(sql, question.getWriter(), question.getTitle(), question.getContents(), question.getQuestionId());
+	}
 }
