@@ -15,4 +15,7 @@
 
 
 ### 9. UserService와 QnaService 중 multi thread에서 문제가 발생할 가능성이 있는 소스는 무엇이며, 그 이유는 무엇인가?
-* 
+* QnaService의 scope는 prototype으로 요청이 있을 때마다 인스턴스를 새로 생성하지만, 이 QnaService를 inject하는 QnaController의 scope는 기본 scope이기 때문에 새로 만들어진 QnaService가 inject 되지 않고, 계속 처음 만든 QnaController 인스턴스만 사용하게 된다. 따라서, 전역변수인 Question이 멀티스레드 상황에서 이전 요청의 question을 보여주는 문제가 발생한다.
+QnaService의 scope도 prototype으로 바꾸어 요청에 따라 새로운 인스턴스로 사용하면 이런 문제를 해결할 수 있지만, 요청이 많아질 경우 너무 많은 인스턴스를 생성하는 성능상의 이슈가 발생한다. (그러나 여러가지 방법을 알았으므로 적용해봄)
+
+* scope prototype으로 발생하는 성능상의 이슈를 해결할 수 있는 방법은 UserService에서처럼 existedUser를 클래스의 전역 변수 대신, 메소드의 지역 변수로 사용하는 것이다. 이럴경우 메소드가 끝남과 동시에 User가 소멸되면서 멀티 스레드 상황에서도 existedUser 변수의 공유가 없기 때문에 요청에 맞는 User를 return할 수 있으며, 싱글톤과 같이 계속 같은 UserService 인스턴스를 사용하기 때문에 성능상의 이슈도 발생하지 않는다.

@@ -10,6 +10,7 @@ import next.service.qna.QnaService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@Scope("prototype")
 @RequestMapping(value={"", "/questions"})
 public class QuestionController {
 	private static final Logger logger = LoggerFactory.getLogger(QuestionController.class);
