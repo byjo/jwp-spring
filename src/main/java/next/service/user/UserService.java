@@ -33,7 +33,7 @@ public class UserService {
 		this.userDao = userDao;
 	}
 
-	@Transactional(propagation = Propagation.NESTED)
+	@Transactional(propagation = Propagation.REQUIRED)
 	public User join(User user) throws ExistedUserException {
 		log.debug("User : {}", user);
 
@@ -69,7 +69,7 @@ public class UserService {
 		return userDao.findByUserId(userId);
 	}
 
-	@Transactional(propagation = Propagation.NESTED)
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(String userId, User updateUser) throws PasswordMismatchException {
 		User existedUser = userDao.findByUserId(userId);
 		if (existedUser == null) {

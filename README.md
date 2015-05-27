@@ -1,6 +1,7 @@
 ### 2. 서버가 시작하는 시점에 부모 ApplicationContext와 자식 ApplicationContext가 초기화되는 과정에 대해 구체적으로 설명해라.
 * 톰캣이 실행되면 web.xml을 읽어서 contextLoaderListener를 설정 하였는지 확인한다. contextListener의 contextInitialized method를 통해 value로 지정된 xml파일을 통해 부모 ApplicationContext를 생성한다.
-그 다음 web.xml의 DispatcherServlet 설정을 확인, [servlet이름]-servlet.xml 혹은 지정한 이름의 xml 파일을 통해 자식 ApplicationContext를 생성한다.
+* 부모 context를 정의하는 applicationContext.xml에는 모든 서비스에서 사용하는 bean 객체를 만들거나 설정을 한다.
+* 그 다음 web.xml의 DispatcherServlet 설정을 확인, [servlet이름]-servlet.xml 혹은 지정한 이름의 xml 파일을 통해 자식 ApplicationContext를 생성한다. 
 
 
 
